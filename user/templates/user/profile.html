@@ -7,7 +7,7 @@
 <main>
     <div class="row">
         <div class="profile-left col-lg-4">
-            <img src="{{ user.profile.imageUrl }}" alt="" class="profile-image">
+            <img src="{{ user.profile.imageUrl }}{% if 'gravatar' in user.profile.imageUrl %}&s=220{% endif %}" alt="" class="profile-image">
             <h1>{{ user.username }}</h1>
             <p><strong>Joined:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
         </div>

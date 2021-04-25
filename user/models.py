@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from hashlib import md5
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -14,7 +15,8 @@ class Profile(models.Model):
         try:
             img = self.image.url
         except:
-            img = ''
+            digest = md5(self.user.email.lower().encode('utf-8')).hexdigest()
+            img = f'https://www.gravatar.com/avatar/{digest}?d=identicon'
         return img
 
     @property

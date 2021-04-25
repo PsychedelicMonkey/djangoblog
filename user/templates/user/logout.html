@@ -1,0 +1,10 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<main>
+    <h2>You are logged out.</h2>
+    <p>Thank you for visiting the website.</p>
+    <p><a href="{% url 'index' %}">Click here to go back to the home page.</a></p>
+</main>
+{% endblock %}

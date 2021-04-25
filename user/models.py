@@ -11,7 +11,7 @@ class Profile(models.Model):
     @property
     def imageUrl(self):
         try:
-            img = self.user.url
+            img = self.image.url
         except:
             img = ''
         return img

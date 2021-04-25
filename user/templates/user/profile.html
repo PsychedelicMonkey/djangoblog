@@ -1,13 +1,21 @@
 {% extends "main/base.html" %}
 
 {% block content %}
-<main>
-    <img src="{{ user.profile.imageUrl }}" alt="" class="profile-image">
-    <h1>{{ user.username }}</h1>
-    <p><strong>Joined:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
+<header style="background-image: url({{ user.profile.backgroundUrl }});">
+</header>
 
-    {% if request.user == user %}
-    <a href="{% url 'edit-profile' request.user.username %}">Edit Your Profile</a>
-    {% endif %}
+<main>
+    <div class="row">
+        <div class="profile-left col-lg-4">
+            <img src="{{ user.profile.imageUrl }}" alt="" class="profile-image">
+            <h1>{{ user.username }}</h1>
+            <p><strong>Joined:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
+        </div>
+        <div class="profile-right col-lg-8">
+            {% if request.user == user %}
+            <a href="{% url 'edit-profile' request.user.username %}">Edit Your Profile</a>
+            {% endif %}
+        </div>
+    </div>
 </main>
 {% endblock %}

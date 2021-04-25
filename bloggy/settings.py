@@ -32,7 +32,6 @@ ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -150,3 +149,5 @@ LOGIN_REDIRECT_URL = 'index'
 SESSION_COOKIE_SECURE = True
 
 CSRF_COOKIE_SECURE = True
+
+ADMINS = [os.environ.get('ADMINS')]

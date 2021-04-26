@@ -18,4 +18,4 @@ class EditUserForm(forms.ModelForm):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image', 'background']
+        fields = ['about_me', 'image', 'background']

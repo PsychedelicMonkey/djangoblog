@@ -12,6 +12,8 @@
             <p><strong>Joined:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
         </div>
         <div class="profile-right col-lg-8">
+            {% if user.profile.about_me %}{{ user.profile.about_me|linebreaks }}{% endif %}
+
             {% if request.user == user %}
             <a href="{% url 'edit-profile' request.user.username %}">Edit Your Profile</a>
             {% endif %}

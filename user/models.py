@@ -6,6 +6,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(null=True, blank=True)
     background = models.ImageField(null=True, blank=True)
+    about_me = models.TextField(max_length=500, null=True, blank=True)
 
     def __str__(self):
         return self.user.username

@@ -56,6 +56,10 @@ header {
     border-radius: 50%;
 }
 
+.stats {
+    text-align: center;
+}
+
 .gallery {
     margin-top: 26px;
 }

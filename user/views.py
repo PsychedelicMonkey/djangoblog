@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.urls import reverse
 from .forms import RegisterForm, EditUserForm, EditProfileForm
 
 def register(request):
@@ -22,9 +23,20 @@ def register(request):
 def profile(request, username):
     user = get_object_or_404(User, username=username)
     posts = user.post_set.order_by('-created')
+    followBtn = None
+    followUrl = None
+    if request.user.is_authenticated and request.user != user:
+        if not request.user.profile.is_following(user):
+            followBtn = 'Follow'
+            followUrl = reverse('follow', kwargs={'username':user.username})
+        else:
+            followBtn = 'Unfollow'
+            followUrl = reverse('unfollow', kwargs={'username':user.username})
     context = {
         'user': user,
         'posts': posts,
+        'followBtn': followBtn,
+        'followUrl': followUrl,
     }
     return render(request, 'user/profile.html', context)
 

@@ -7,6 +7,7 @@ class Profile(models.Model):
     image = models.ImageField(null=True, blank=True)
     background = models.ImageField(null=True, blank=True)
     about_me = models.TextField(max_length=500, null=True, blank=True)
+    following = models.ManyToManyField(User, related_name='followers')
 
     def __str__(self):
         return self.user.username
@@ -27,3 +28,14 @@ class Profile(models.Model):
         except:
             img = ''
         return img
+
+    def follow(self, user):
+        if not self.is_following(user):
+            self.following.add(user)
+
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.following.remove(user)
+
+    def is_following(self, user):
+        return self.following.filter(id=user.id).count() > 0

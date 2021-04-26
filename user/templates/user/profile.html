@@ -10,12 +10,30 @@
             <img src="{{ user.profile.imageUrl }}{% if 'gravatar' in user.profile.imageUrl %}&s=220{% endif %}" alt="" class="profile-image">
             <h1>{{ user.username }}</h1>
             <p><strong>Joined:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
+            <div class="stats row">
+                <div class="stat col-xs-4" style="padding-right: 50px;">
+                    <p class="stat-num">{{ user.post_set.count }}</p>
+                    <p class="stat-desc">Posts</p>
+                </div>
+                <div class="stat col-xs-4">
+                    <p id="followers-count" class="stat-num">{{ user.followers.count }}</p>
+                    <p class="stat-desc">Followers</p>
+                </div>
+                <div class="stat col-xs-4" style="padding-left: 50px;">
+                    <p class="stat-num">{{ user.profile.following.count }}</p>
+                    <p class="stat-desc">Following</p>
+                </div>
+            </div>
         </div>
         <div class="profile-right col-lg-8">
             {% if user.profile.about_me %}{{ user.profile.about_me|linebreaks }}{% endif %}
 
-            {% if request.user == user %}
-            <a href="{% url 'edit-profile' request.user.username %}">Edit Your Profile</a>
+            {% if request.user.is_authenticated %}
+                {% if request.user == user %}
+                <a href="{% url 'edit-profile' request.user.username %}">Edit Your Profile</a>
+                {% elif followBtn %}
+                <button data-url="{{ followUrl }}" class="follow-btn btn btn-primary">{{ followBtn }}</button>
+                {% endif %}
             {% endif %}
         </div>
     </div>

@@ -1,8 +1,11 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
+from . import followers
 
 urlpatterns = [
+    path('follow/<str:username>/', followers.follow, name='follow'),
+    path('unfollow/<str:username>/', followers.unfollow, name='unfollow'),
     path('profile/<str:username>/', views.profile, name='profile'),
     path('profile/<str:username>/edit/', views.edit_profile, name='edit-profile'),
     path('register/', views.register, name='register'),

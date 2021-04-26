@@ -21,8 +21,10 @@ def register(request):
 
 def profile(request, username):
     user = get_object_or_404(User, username=username)
+    posts = user.post_set.order_by('-created')
     context = {
         'user': user,
+        'posts': posts,
     }
     return render(request, 'user/profile.html', context)
 

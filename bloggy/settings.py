@@ -142,3 +142,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
+
+# Run the test email server with 'python -m smtpd -n -c DebuggingServer localhost:1025'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '1025'

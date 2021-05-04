@@ -1,7 +1,7 @@
 <div id="gallery" class="gallery row">
     {% for post in posts %}
     <div class="col-md-4">
-        <img src="{{ post.imageUrl }}" alt="">
+        <img src="{{ post.imageUrl }}" alt="" data-url="{% url 'post-detail' post.pk %}">
         {% if post.user == request.user %}
         <a href="{% url 'post-update' post.pk %}" class="edit-btn btn btn-primary">Edit</a>
         {% endif %}

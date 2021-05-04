@@ -1,7 +1,10 @@
-<div class="gallery row">
+<div id="gallery" class="gallery row">
     {% for post in posts %}
     <div class="col-md-4">
         <img src="{{ post.imageUrl }}" alt="">
+        {% if post.user == request.user %}
+        <a href="#" class="edit-btn btn btn-primary">Edit</a>
+        {% endif %}
     </div>
     {% endfor %}
 </div>

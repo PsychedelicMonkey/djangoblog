@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -13,3 +14,6 @@ class Post(models.Model):
     @property
     def imageUrl(self):
         return self.image.url
+
+    def get_absolute_url(self):
+        return reverse('post-detail', kwargs={'pk': self.pk})

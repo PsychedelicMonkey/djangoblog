@@ -73,3 +73,16 @@ header {
     max-width: 100%;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15), 0px 3px 6px rgba(0, 0, 0, 0.15);
 }
+
+.edit-btn {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 14px;
+}
+
+.form-img {
+    max-width: 100%;
+    margin-bottom: 22px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15), 0px 3px 6px rgba(0, 0, 0, 0.15);
+}

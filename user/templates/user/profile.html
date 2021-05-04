@@ -40,3 +40,22 @@
     {% include "main/_gallery.html" %}
 </main>
 {% endblock %}
+
+{% block scripts %}
+{% if request.user == user %}
+<script>
+    $('#gallery').children().each(function(e) {
+        var post = $(this);
+        var img = post.children()[0];
+        var btn = post.children()[1];
+        img.addEventListener('mouseover', function(e) {
+            btn.style.display = 'block';
+        });
+
+        img.addEventListener('mouseout', function(e) {
+            btn.style.display = 'none';
+        });
+    });
+</script>
+{% endif %}
+{% endblock %}

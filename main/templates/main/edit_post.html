@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<main>
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Edit Post</h1>
+
+            <img src="{{ object.imageUrl }}" alt="" class="form-img">
+
+            <form action="" method="post">
+                {% csrf_token %}
+
+                {{ form|crispy }}
+
+                <input type="submit" value="Save Changes" class="btn btn-primary">
+            </form>
+
+            <br>
+            <p><a href="{% url 'post-delete' post.pk %}" class="btn btn-danger">Delete this post</a></p>
+        </div>
+    </div>
+</main>
+{% endblock %}

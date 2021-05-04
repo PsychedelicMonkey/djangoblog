@@ -3,7 +3,7 @@
     <div class="col-md-4">
         <img src="{{ post.imageUrl }}" alt="">
         {% if post.user == request.user %}
-        <a href="#" class="edit-btn btn btn-primary">Edit</a>
+        <a href="{% url 'post-update' post.pk %}" class="edit-btn btn btn-primary">Edit</a>
         {% endif %}
     </div>
     {% endfor %}

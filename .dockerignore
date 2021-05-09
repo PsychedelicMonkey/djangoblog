@@ -1,0 +1,8 @@
+__pycache__/
+images/
+.gitignore
+LICENSE
+README.md
+Dockerfile
+docker-compose.yml
+db.sqlite3

@@ -1,0 +1,42 @@
+version: "3.5"
+services:
+    nginx:
+        image: nginx:latest
+        container_name: nginx
+        restart: always
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+            - ./static:/usr/share/nginx
+            - ./certs:/etc/ssl/private:ro
+        depends_on: 
+            - db
+            - blog
+
+    db:
+        image: mysql/mysql-server:latest
+        container_name: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: unless-stopped
+        ports:
+            - 3306:3306
+        environment:
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=blog
+            - MYSQL_USER=django
+            - MYSQL_PASSWORD=password
+
+    blog:
+        build: .
+        container_name: blog
+        restart: unless-stopped
+        volumes:
+            - ./static/images:/images
+        env_file: 
+            - .env
+        depends_on: 
+            - db
+        links:
+            - db
